@@ -11,6 +11,14 @@ pipeline {
            steps{
            input 'Do you want to proceed?'
            }
+           stage('pre-build'){
+           parallel{
+           stage('unittest'){
+           steps {
+           echo 'unit testing phase'
+           }
+           }
+           }
     }
         stage('Build') {
             steps {
