@@ -9,15 +9,21 @@ pipeline {
     stages {
     stage('Test'){
            steps{
-           input 'Do you want to proceed?'
+                   input 'Do you want to proceed?'
+                   }
            }
            stage('pre-build'){
-           parallel{
-           stage('unittest'){
-           steps {
-           echo 'unit testing phase'
-           }
-           }
+                parallel{
+               stage('unittest'){
+                      steps {
+                              echo 'unit testing phase'
+                            }
+                          }
+             stage('integrationtest'){
+                              steps {
+                                        echo 'integrating testing phase'
+                              }
+                     }
            }
     }
         stage('Build') {
@@ -42,5 +48,5 @@ pipeline {
             }
         }
     }
-}
+
 }
